@@ -2,11 +2,13 @@ import sys
 import os
 import numpy as np
 
+import time # for profiling only
+
 #------------------------------------------------------------------------------
 sys.path.append(os.getcwd() + '/alglib')
 
 #------------------------------------------------------------------------------
-DATA_FILE    = 'frame[001][-0300].dat'
+DATA_FILE    = 'frame[050][+0190].dat'
 AF_PATH      = os.environ['AF_PATH']
 infile_name  = os.path.join(AF_PATH,'data','in',DATA_FILE)
 
@@ -28,12 +30,17 @@ header_t = np.dtype([
 
 with open(infile_name, 'rb') as infile:
     header = np.fromfile(infile, dtype = header_t, count = 1)
-    frame_t = np.dtype( (np.uint16, (header['Width'][0],header['Height'][0]) ) ); # frame size derived from header
-    frame = np.fromfile(infile, dtype = frame_t, count = 1)
-
     #-----------------
     print(header)
-    frame.shape
+
+    start_time = time.time()                                        # for profiling only
+    frame = np.fromfile(infile, dtype = np.uint16)
+    frame = frame.reshape((header['Height'][0],header['Width'][0]))
+    d_time = time.time() - start_time                               # for profiling only
+    print("elapsed time {0:6.4f} ms".format(d_time*1000))           # for profiling only
+    print(frame.shape)
+
+
     pass
     #-----------------
 print(infile.closed)
