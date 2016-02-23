@@ -1,7 +1,11 @@
 #------------------------------------------------------------------------------
 import numpy as np
 from collections import namedtuple
-import time            # for profiling only
+
+DEBUG_TIME_MEASURE = True
+
+if DEBUG_TIME_MEASURE:
+    import time            # for profiling only
 
 #------------------------------------------------------------------------------
 def read_infile(infile_name):
@@ -24,16 +28,15 @@ def read_infile(infile_name):
     #open file, read header and frame
     with open(infile_name, 'rb') as infile:
         header = np.fromfile(infile, dtype = header_t, count = 1)
-        #-----------------
-        start_time = time.time()                                        # for profiling only
+        if DEBUG_TIME_MEASURE:
+            start_time = time.time()                                     
         frame = np.fromfile(infile, dtype = np.uint16)
         frame = frame.reshape((header['Height'][0],header['Width'][0]))
-        d_time = time.time() - start_time                               # for profiling only
-        print("elapsed time {0:6.4f} ms".format(d_time*1000))           # for profiling only
-        # print(frame.shape)
+        if DEBUG_TIME_MEASURE:
+            d_time = time.time() - start_time                              
+            print("elapsed time {0:6.4f} ms".format(d_time*1000))          
     #print(infile.closed) # debug
 
-    # return infile_data
     infile_data = namedtuple("infile_data",["header","frame"])
     return infile_data(header,frame)
 
