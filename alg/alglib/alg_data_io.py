@@ -8,7 +8,7 @@ if DEBUG_TIME_MEASURE:
     import time            # for profiling only
 
 #------------------------------------------------------------------------------
-def read_infile(infile_name):
+def read_infile(infile_name, **kwargs):
     """ read input data flie (file: header,frame) """
 
     # header format
@@ -37,6 +37,11 @@ def read_infile(infile_name):
             print("elapsed time {0:6.4f} ms".format(d_time*1000))          
     #print(infile.closed) # debug
 
-    infile_data = namedtuple("infile_data",["header","frame"])
-    return infile_data(header,frame)
+    frame_size_valid = True
+    if set(("Height","Width")) <= set(kwargs):
+        if((kwargs["Height"] != header['Height']) or (kwargs["Width"] != header['Width'])):
+            frame_size_valid = False
+
+    infile_data = namedtuple("infile_data",["frame_size_valid","header","frame"])
+    return infile_data(frame_size_valid,header,frame)
 

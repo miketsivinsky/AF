@@ -9,10 +9,13 @@ import alg_data_io as alg_io
 importlib.reload(alg_io)  # for debub only
 
 #------------------------------------------------------------------------------
+FRAME_HEIGHT = 600
+FRAME_WIDTH  = 800
+
 DATA_FILE    = 'frame[050][+0190].dat'
 AF_PATH      = os.environ['AF_PATH']
 infile_name  = os.path.join(AF_PATH,'data','in',DATA_FILE)
-out = alg_io.read_infile(infile_name)
+out = alg_io.read_infile(infile_name, Width = FRAME_WIDTH, Height = FRAME_HEIGHT)
 
-print(out.header)
+print(out.header, out.frame_size_valid)
 
