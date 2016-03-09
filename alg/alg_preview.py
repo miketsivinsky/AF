@@ -28,6 +28,7 @@ fig = plt.figure()
 ax  = fig.add_axes([0, 0, 1, 1])
 ax.imshow(out.frame, cmap = plt.cm.gray)
 #ax.imshow(out.frame, cmap = plt.cm.gray, extent = [0, 800, 600, 0])
+ax.plot([10,100], [20,200])
 fig.show()
 
 
