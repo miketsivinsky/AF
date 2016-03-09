@@ -1,7 +1,10 @@
 import sys
 import os
 import importlib          # for debub only
-#import numpy as np
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 #------------------------------------------------------------------------------
 sys.path.append(os.getcwd() + '/alglib')
@@ -17,5 +20,15 @@ AF_PATH      = os.environ['AF_PATH']
 infile_name  = os.path.join(AF_PATH,'data','in',DATA_FILE)
 out = alg_io.read_infile(infile_name, Width = FRAME_WIDTH, Height = FRAME_HEIGHT)
 
+#------------------------------------------------------------------------------
 print(out.header, out.frame_size_valid)
+
+#------------------------------------------------------------------------------
+fig = plt.figure()
+ax  = fig.add_axes([0, 0, 1, 1])
+ax.imshow(out.frame, cmap = plt.cm.gray)
+#ax.imshow(out.frame, cmap = plt.cm.gray, extent = [0, 800, 600, 0])
+fig.show()
+
+
 
