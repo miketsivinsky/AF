@@ -42,6 +42,8 @@ figPos(3) = figPos(3) - figPos(1) + 1;
 figPos(4) = figPos(4) - figPos(2) + 1;
 set(gcf,'units','pixels','outerposition',figPos);
 
+return
+
 imwrite(frame*ImgScale,[DataFile '.' ImgSfx],ImgSfx);
 
 nROI = size(ROI,1);
