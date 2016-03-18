@@ -6,8 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-import screeninfo
-
 #------------------------------------------------------------------------------
 sys.path.append(os.getcwd() + '/alglib')
 import alg_data_io as alg_io
@@ -38,19 +36,8 @@ ax.format_coord = lambda x, y: ''
 img = ax.imshow(out.frame, cmap = plt.cm.gray, origin = 'upper')
 #img.format_cursor_data = lambda data: '' # not need
 img.get_cursor_data = lambda event: None
+
 ax.plot([10,100], [20,200])
-
-
-#--------------------------
-mng = fig.canvas.manager
-mon = screeninfo.get_monitors()
-print(mon)
-mng.window.wm_geometry("+"+str(mon[0].x)+"+0")
-#mng.full_screen_toggle()
-mng.window.state('zoomed')
-#mng.set_window_title('slonick')
-
-#--------------------------
-#ax.figure.show()
+ax.figure.show()
 
 
