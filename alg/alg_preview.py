@@ -10,6 +10,7 @@ importlib.reload(alg_io)  # for debub only
 
 # http://stackoverflow.com/questions/30809316/how-to-create-a-plot-in-matplotlib-without-using-pyplot
 import matplotlib as mpl 
+import matplotlib.pyplot as plt
 from matplotlib.backends import backend_tkagg as backend 
 
 #------------------------------------------------------------------------------
