@@ -20,6 +20,10 @@ SizeROI3    = 256;
 %ROI = [ROI1; ROI2; ROI3];
 ROI = [ROI2];
 
+ROI
+return 
+
+
 %--------------------------------------------------------------------------
 Monitor    = 2;
 ImgScale   = 64;
@@ -41,8 +45,6 @@ figPos = hMon(Monitor,:);
 figPos(3) = figPos(3) - figPos(1) + 1;
 figPos(4) = figPos(4) - figPos(2) + 1;
 set(gcf,'units','pixels','outerposition',figPos);
-
-return
 
 imwrite(frame*ImgScale,[DataFile '.' ImgSfx],ImgSfx);
 

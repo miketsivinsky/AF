@@ -26,6 +26,6 @@ img_data = alg_gr.init_graphics(in_data.frame)
 print(img_data.figure)
 
 #------------------------------------------------------------------------------
-
+alg_io.gen_list_ROI([FRAME_WIDTH, FRAME_HEIGHT])
 
 

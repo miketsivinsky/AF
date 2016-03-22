@@ -45,3 +45,10 @@ def read_infile(infile_name, **kwargs):
     infile_data = namedtuple("infile_data",["frame_size_valid","header","frame"])
     return infile_data(frame_size_valid,header,frame)
 
+#------------------------------------------------------------------------------
+def gen_list_ROI(frame_size):
+    """ generate list of ROI """
+    print(frame_size)
+    print(type(frame_size))
+
+
